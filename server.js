@@ -18,16 +18,10 @@ function getLanguage(req){
 }
 
 function getSoftware(req){
-  var platform;
-  var arch = os.arch();
-  if (arch == 'x64'){ // correction for bug where os.platform() returns node binary and not user cpu kernel
-    platform = 'Win64';
-  }
-  else{
-    platform = os.platform();
-  }
-  var tempSoftware = os.type() +"; " + os.release() +"; " +platform +"; "+ arch;
+  var tempSoftware = req.headers['user-agent'];
+  tempSoftware = tempSoftware.match(/\(([^)]+)\)/)[1];
   return tempSoftware;
+
 }
 
 app.get('/', function(req, res) {

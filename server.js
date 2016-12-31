@@ -7,12 +7,6 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-
-app.use(bodyParser.urlencoded());
-
 function getIP(req) {
     return req.header('x-forwarded-for') || req.connection.remoteAddress;
 }
